@@ -1,76 +1,67 @@
-'use client'
-import Category from "@/components/Category";
-import Dropzone from "@/components/Dropzone";
-import { useEffect, useState } from "react";
-import TextField from "@/components/TextField";
+'use client';
+import { useState } from "react";
+import { signIn } from 'next-auth/react';
+import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
-import extractText from "@/utils/extractText";
-import Textzone from "@/components/Textzone";
-import { openai } from "@/utils/openai";
-import AnswerCard from "@/components/AnswerCard";
-import Button from "@/components/Button";
+import withAuthRedirect from "@/utils/withAuthRedirect";
 
+const Page = () => {
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+    });
 
-export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState('Misc');
-  const [typedText, setTypedText] = useState('');
-  // const [textfield, setTextfield] = useState('')
-  const [image, setImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
 
-  const [aiResponse, setAiResposne] = useState()
-  const [isResponse, setIsResponse] = useState(false)
+        const result = await signIn('credentials', {
+            redirect: false,
+            email: user.email,
+            password: user.password,
+        });
 
-  const handleSolve = async () => {
-    setIsLoading(true)
-    try {
-      const result = await openai(typedText);
-      setAiResposne(result);
-      setIsResponse(true)
-      setIsLoading(false)
-    } catch (error) {
-      console.error('Error handling solve:', error);
-      setIsLoading(false)
-    }
-  };
+        setIsLoading(false);
 
+        if (result.ok) {
+            console.log('Sign-in successful, redirecting to dashboard...');
+            router.push('/dashboard');
+        } else {
+            console.error('Sign-in failed:', result.error);
+        }
+    };
 
-  useEffect(() => {
-    const getText = async () => {
-      if (image) {
-        setTypedText(await extractText(image))
-      }
-    }
-    getText()
+    if (isLoading) return <Loader />;
 
-  }, [image])
+    return (
+        <div className="lg:w-80 mx-auto mt-10">
+            <form onSubmit={handleSubmit} className="flex flex-col space-y-4 shadow-xl p-5">
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={user.email}
+                    onChange={(e) => setUser({ ...user, email: e.target.value })}
+                    className="border p-2 bg-transparent rounded-md outline-none text-white"
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={user.password}
+                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                    className="border p-2 bg-transparent rounded-md outline-none text-white"
+                    required
+                />
+                <input
+                    type="submit"
+                    value="Sign in"
+                    className="text-white px-12 py-3 rounded-lg bg-gradient-to-r from-[#9D69FF] to-[#3E6EFF] sm:text-sm sm:px-8"
+                />
+            </form>
+        </div>
+    );
+};
 
-
-  if (isLoading) return <Loader />;
-
-  return (
-    <>
-      {isResponse ?
-        (<>
-          <AnswerCard answer={aiResponse?.answer} question={typedText} />
-          <Button action={() => window.location.reload()} value={'Done'} />
-        </>) :
-        <div className="lg:mx-32">
-          <Category category={selectedCategory} setCategory={setSelectedCategory} />
-          <Dropzone image={image} setImage={setImage} setTypedText={setTypedText} />
-          {image && (
-            <div>
-              <Textzone typedText={typedText} setTypedText={setTypedText} />
-              <Button action={handleSolve} value={'Submit'} />
-            </div>
-          )}
-          {!image && (
-            <TextField
-              typedText={typedText} setTypedText={setTypedText}
-              handleSolve={handleSolve}
-            />
-          )}
-        </div>}
-    </>
-  )
-}
+export default withAuthRedirect(Page);

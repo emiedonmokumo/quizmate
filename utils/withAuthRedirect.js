@@ -9,13 +9,9 @@ const withAuthRedirect = (WrappedComponent) => {
 
     useEffect(() => {
       if (status === 'authenticated') {
-        router.replace('/'); // Redirect to homepage or any other page
+        router.replace('/dashboard'); // Redirect to homepage or any other page
       }
     }, [status, router]);
-
-    if (status === 'authenticated') {
-      return null; // Optionally render a loading state here
-    }
 
     return <WrappedComponent {...props} />;
   };
