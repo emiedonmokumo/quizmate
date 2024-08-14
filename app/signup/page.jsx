@@ -10,11 +10,14 @@ const page = () => {
         password: '',
     })
     const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const router = useRouter()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setIsLoading(true)
 
         if (passwordConfirm !== user.password) {
             alert('Password do not match!')
@@ -35,9 +38,12 @@ const page = () => {
                 router.push('/')
             }
         } catch (error) {
+            setIsLoading(false)
             console.log(error)
         }
     }
+
+    if(isLoading) return <Loader />
 
     return (
         <div className='lg:w-80 mx-auto sm:p-2 lg:mt-10'>

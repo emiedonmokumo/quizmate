@@ -3,7 +3,7 @@ import Category from "@/components/Category";
 import Dropzone from "@/components/Dropzone";
 import { useEffect, useState } from "react";
 import TextField from "@/components/TextField";
-import Spinner from "@/components/spinner";
+import Loader from "@/components/Loader";
 import extractText from "@/utils/extractText";
 import Textzone from "@/components/Textzone";
 import { openai } from "@/utils/openai";
@@ -46,7 +46,7 @@ export default function Home() {
   }, [image])
 
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Loader />;
 
   return (
     <>

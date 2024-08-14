@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { signIn } from 'next-auth/react'
 import { useRouter } from "next/navigation";
-import Spinner from "@/components/Spinner";
+import Loader from "@/components/Loader";
 import withAuthRedirect from "@/utils/withAuthRedirect";
 
 const page = () => {
@@ -34,7 +34,7 @@ const page = () => {
 
     };
 
-    if(isLoading) return <Spinner />
+    if(isLoading) return <Loader />
 
     return (
         <div className="lg:w-80 mx-auto mt-10">
