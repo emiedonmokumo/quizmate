@@ -1,5 +1,5 @@
 export async function openai(question) {
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     try {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
