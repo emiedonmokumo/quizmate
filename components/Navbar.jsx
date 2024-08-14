@@ -30,7 +30,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='sm:mt-10'>
-        <h2 className='font-bold text-white text-4xl text-center sm:text-2xl'>
+        <h2 className='font-bold text-white text-4xl text-center sm:text-2xl sm:px-3'>
           Study Smarter with
           <span className='font-bold bg-gradient-to-r from-[#9D69FF] to-[#3E6EFF] text-transparent bg-clip-text'> Quizmate </span>🤝
         </h2>
