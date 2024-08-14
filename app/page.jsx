@@ -9,11 +9,9 @@ import Textzone from "@/components/Textzone";
 import { openai } from "@/utils/openai";
 import AnswerCard from "@/components/AnswerCard";
 import Button from "@/components/Button";
-import { useSession } from "next-auth/react";
 
 
 export default function Home() {
-  const { data: session, status } = useSession();
   const [selectedCategory, setSelectedCategory] = useState('Misc');
   const [typedText, setTypedText] = useState('');
   // const [textfield, setTextfield] = useState('')
@@ -46,15 +44,6 @@ export default function Home() {
     getText()
 
   }, [image])
-
-  useEffect(() => {
-    if (status === "loading") return; 
-    if (!session) {
-      console.log("User not logged in");
-    } else {
-      console.log("User logged in:", session.user);
-    }
-  }, [session, status]);
 
 
   if (isLoading) return <Spinner />;
