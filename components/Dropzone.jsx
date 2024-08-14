@@ -1,13 +1,11 @@
 'use client'
 import { useDropzone } from 'react-dropzone';
-import { useState } from 'react';
 import { RxCrossCircled } from "react-icons/rx";
 
 const Dropzone = ({ image, setImage, setTypedText }) => {
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: (acceptedFiles) => {
-            // Directly store the file object
             const file = acceptedFiles[0];
             setImage(file);
         }
@@ -15,7 +13,8 @@ const Dropzone = ({ image, setImage, setTypedText }) => {
 
     return (
         <div className="my-5 relative">
-            <div {...getRootProps()} className="relative border-dashed border-2 p-4 lg:h-80 sm:h-52 rounded-3xl border-[#3E6EFF] text-white flex flex-col justify-center items-center overflow-hidden">
+            <div {...getRootProps()} className="relative border-dashed border-2 p-4 lg:h-80 sm:h-52 rounded-3xl border-[#3E6EFF] text-white flex flex-col justify-center items-center overflow-hidden cursor-pointer">
+                <input {...getInputProps()} />
                 {image ? (
                     <div className='relative w-full h-full flex flex-col justify-center items-center'>
                         <img src={URL.createObjectURL(image)} alt="Uploaded preview" className='absolute inset-0 w-full h-full object-contain' />
@@ -25,7 +24,8 @@ const Dropzone = ({ image, setImage, setTypedText }) => {
                     <>
                         <img src="/image-box.png" className='mb-5' alt="" />
                         <p className='text-center hover:bg-gradient-to-r hover:from-[#9D69FF] hover:to-[#3E6EFF] hover:text-transparent hover:bg-clip-text sm:text-sm text-[#94A3B8]'>Drag and drop some files here, or click to select files</p>
-                    </>)}
+                    </>
+                )}
             </div>
         </div>
     );
