@@ -20,6 +20,7 @@ const Page = () => {
         const result = await signIn('credentials', {
             email: user.email,
             password: user.password,
+            redirect: true,
             callbackUrl: '/dashboard'
         });
 
