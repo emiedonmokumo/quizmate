@@ -17,21 +17,12 @@ const Page = () => {
         e.preventDefault();
         setIsLoading(true);
 
-        const result = await signIn('credentials', {
+        await signIn('credentials', {
             email: user.email,
             password: user.password,
             redirect: true,
             callbackUrl: '/dashboard'
         });
-
-        setIsLoading(false);
-
-        if (result.ok) {
-            console.log('Sign-in successful, redirecting to dashboard...');
-            router.push('/dashboard');
-        } else {
-            console.error('Sign-in failed:', result.error);
-        }
     };
 
     if (isLoading) return <Loader />;
