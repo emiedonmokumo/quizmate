@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QuizMate
 
-## Getting Started
+**App Name:** QuizMate  
+**Domain:** [https://quiz-mate.vercel.app](https://quiz-mate.vercel.app)  
+**Description:** QuizMate is an AI-powered app that allows users to solve math problems by either typing them in or uploading images of the problems. The app uses OpenAI’s API to process and answer math questions.
 
-First, run the development server:
+## Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. `/dashboard/page.jsx`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Description:** Main page for the dashboard where users interact with the app. Users can either upload images or type questions to get answers.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+**Components Used:**
+- `Category`: Component for selecting categories.
+- `Dropzone`: Component for image upload functionality.
+- `TextField`: Component for typing questions directly.
+- `Loader`: Component for showing loading states.
+- `Textzone`: Component for displaying and editing typed text.
+- `AnswerCard`: Component for displaying AI-generated answers.
+- `Button`: Component for clickable actions.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Key Functionality:**
+- **State Management:** Manages states for category, typed text, image, loading status, and AI response.
+- **Image Handling:** Extracts text from uploaded images using `extractText`.
+- **Text Handling:** Processes typed questions and gets answers from OpenAI’s API.
+- **Loading State:** Shows a loading indicator while processing requests.
 
-## Learn More
+### 2. `/signup/page.jsx`
 
-To learn more about Next.js, take a look at the following resources:
+**Description:** Signup page for new users to create an account.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Components Used:**
+- `Loader`: Component for showing loading states.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Key Functionality:**
+- **Form Handling:** Handles form submission for user signup.
+- **Validation:** Ensures password and confirm password fields match.
+- **API Integration:** Sends signup data to `/api/signup` endpoint.
+- **Redirection:** Redirects to the homepage upon successful signup.
 
-## Deploy on Vercel
+### 3. `/page.jsx`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Description:** Login page for existing users to sign in.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Components Used:**
+- `Loader`: Component for showing loading states.
+- `withAuthRedirect`: A utility to handle redirection based on authentication status.
+
+**Key Functionality:**
+- **Form Handling:** Handles form submission for user login.
+- **API Integration:** Uses NextAuth.js `signIn` method to authenticate users.
+- **Loading State:** Shows a loading indicator while authentication is in progress.
+
+### 4. `/openai.js`
+
+**Description:** Utility file for interacting with OpenAI’s API.
+
+**Key Functionality:**
+- **API Request:** Sends a POST request to OpenAI’s API with the user’s question.
+- **Error Handling:** Catches and logs errors during the API request.
+- **Response Handling:** Processes and returns the response from OpenAI.
+
+## Dependencies
+
+### Dependencies
+
+- **`bcrypt`**: For hashing passwords.
+- **`mongoose`**: For MongoDB object modeling.
+- **`next`**: Next.js framework.
+- **`next-auth`**: Authentication library for Next.js.
+- **`react`**: React library for building user interfaces.
+- **`react-dom`**: React library for DOM rendering.
+- **`react-dropzone`**: For drag-and-drop file uploads.
+- **`react-icons`**: For using React icons.
+- **`tesseract.js`**: For OCR (optical character recognition).
+
+### Dev Dependencies
+
+- **`postcss`**: For PostCSS processing.
+- **`tailwindcss`**: For utility-first CSS framework.
+
+## Scripts
+
+- **`dev`**: Starts the Next.js development server.
+- **`build`**: Builds the Next.js application for production.
+- **`start`**: Starts the Next.js production server.
+- **`lint`**: Runs linting for the project.
+
+## Environment Variables
+
+- **`NEXT_PUBLIC_API_KEY`**: API key for OpenAI.
