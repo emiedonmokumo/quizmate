@@ -10,7 +10,7 @@ const page = () => {
 
     useEffect(()=>{
         if(session?.user) redirect('/dashboard')
-    }, [session])
+    }, [])
 
     const [user, setUser] = useState({
         email: '',

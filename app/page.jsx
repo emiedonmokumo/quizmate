@@ -10,7 +10,7 @@ const Page = () => {
 
     useEffect(()=>{
         if(session?.user) redirect('/dashboard')
-    }, [session])
+    }, [])
 
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
