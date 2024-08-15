@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Loader from '@/components/Loader'
+import withAuthRedirect from '@/utils/withAuthRedirect'
 
 const page = () => {
     const [user, setUser] = useState({
@@ -62,4 +63,4 @@ const page = () => {
     )
 }
 
-export default page
+export default withAuthRedirect(page)
