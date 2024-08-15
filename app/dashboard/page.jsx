@@ -14,10 +14,8 @@ import Button from "@/components/Button";
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('Misc');
   const [typedText, setTypedText] = useState('');
-  // const [textfield, setTextfield] = useState('')
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const [aiResponse, setAiResposne] = useState()
   const [isResponse, setIsResponse] = useState(false)
 
@@ -38,16 +36,20 @@ export default function Home() {
   useEffect(() => {
     const getText = async () => {
       if (image) {
-        setTypedText(await extractText(image))
+        setIsLoading(true); // Start loading state for text extraction
+        try {
+          const text = await extractText(image);
+          setTypedText(text);
+        } finally {
+          setIsLoading(false); // End loading state for text extraction
+        }
       }
     }
     getText()
-
   }, [image])
 
 
   if (isLoading) return <Loader />;
-
   return (
     <>
       {isResponse ?

@@ -5,8 +5,6 @@ import Loader from "@/components/Loader";
 import withAuthRedirect from "@/utils/withAuthRedirect";
 
 const Page = () => {
-    const { data: session, status } = useSession();
-
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
         email: '',
