@@ -1,12 +1,17 @@
 'use client';
 import { useState } from "react";
-import { signIn } from 'next-auth/react';
-import { useRouter } from "next/navigation";
+import { signIn, useSession } from 'next-auth/react';
+import { redirect } from "next/navigation";
 import Loader from "@/components/Loader";
 import withAuthRedirect from "@/utils/withAuthRedirect";
 
 const Page = () => {
-    const router = useRouter();
+    const { data: session, status } = useSession();
+
+    useEffect(()=>{
+        if(session?.user) redirect('/dashboard')
+    }, [session])
+
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
         email: '',

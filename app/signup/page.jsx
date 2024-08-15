@@ -8,6 +8,10 @@ import { useSession } from 'next-auth/react'
 const page = () => {
     const { data: session, status } = useSession();
 
+    useEffect(()=>{
+        if(session?.user) redirect('/dashboard')
+    }, [session])
+
     const [user, setUser] = useState({
         email: '',
         username: '',
@@ -66,4 +70,4 @@ const page = () => {
     )
 }
 
-export default withAuthRedirect(page)
+export default page
