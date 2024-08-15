@@ -1,13 +1,11 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { signIn, useSession } from 'next-auth/react';
-import { redirect } from "next/navigation";
 import Loader from "@/components/Loader";
 import withAuthRedirect from "@/utils/withAuthRedirect";
 
 const Page = () => {
     const { data: session, status } = useSession();
-    if(session?.user) redirect('/dashboard')
 
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
