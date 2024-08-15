@@ -18,7 +18,7 @@ const Dropzone = ({ image, setImage, setTypedText }) => {
                 {image ? (
                     <div className='relative w-full h-full flex flex-col justify-center items-center'>
                         <img src={URL.createObjectURL(image)} alt="Uploaded preview" className='absolute inset-0 w-full h-full object-contain' />
-                        <button className='absolute right-0 top-0 p-2' onClick={(e) => {e.stopPropagation(); setImage(null); setTypedText('')}}><RxCrossCircled className='text-4xl sm:text-2xl text-black' /></button>
+                        <button className='absolute right-0 top-0 p-2' onClick={(e) => {e.stopPropagation(); setImage(null); setTypedText('')}}><RxCrossCircled className='text-4xl sm:text-2xl text-blue-400' /></button>
                     </div>
                 ) : (
                     <>
