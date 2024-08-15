@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import withAuthRedirect from '@/utils/withAuthRedirect'
+import Loader from '@/components/Loader'
 
 const page = () => {
     const [user, setUser] = useState({
@@ -36,6 +37,8 @@ const page = () => {
             if(response.ok) {
                 console.log(await response.json())
                 router.push('/')
+            } else {
+                setIsLoading(false)
             }
         } catch (error) {
             setIsLoading(false)
