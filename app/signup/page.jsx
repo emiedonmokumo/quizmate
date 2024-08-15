@@ -7,10 +7,7 @@ import { useSession } from 'next-auth/react'
 
 const page = () => {
     const { data: session, status } = useSession();
-
-    useEffect(()=>{
-        if(session?.user) redirect('/dashboard')
-    }, [])
+    if(session.user) redirect('/dashboard')
 
     const [user, setUser] = useState({
         email: '',

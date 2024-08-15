@@ -7,10 +7,7 @@ import withAuthRedirect from "@/utils/withAuthRedirect";
 
 const Page = () => {
     const { data: session, status } = useSession();
-
-    useEffect(()=>{
-        if(session?.user) redirect('/dashboard')
-    }, [])
+    if(session.user) redirect('/dashboard')
 
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
