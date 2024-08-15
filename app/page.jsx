@@ -18,9 +18,9 @@ const Page = () => {
         setIsLoading(true);
 
         const result = await signIn('credentials', {
-            redirect: false,
             email: user.email,
             password: user.password,
+            callbackUrl: '/dashboard'
         });
 
         setIsLoading(false);
