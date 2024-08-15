@@ -1,10 +1,13 @@
 'use client'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+import { redirect, useRouter } from 'next/navigation'
 import withAuthRedirect from '@/utils/withAuthRedirect'
 import Loader from '@/components/Loader'
+import { useSession } from 'next-auth/react'
 
 const page = () => {
+    const { data: session, status } = useSession();
+
     const [user, setUser] = useState({
         email: '',
         username: '',

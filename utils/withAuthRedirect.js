@@ -1,17 +1,14 @@
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { redirect,  } from 'next/navigation';
 import { useEffect } from 'react';
 
 const withAuthRedirect = (WrappedComponent) => {
   return function AuthRedirectWrapper(props) {
-    const { data: session, status } = useSession();
-    const router = useRouter();
+    const { data: session, } = useSession();
 
-    useEffect(() => {
-      if (status === 'authenticated') {
-        router.replace('/dashboard'); // Redirect to homepage or any other page
-      }
-    }, [status, router]);
+    useEffect(()=>{
+      if(session?.user) redirect('/dashboard')
+  }, [session])
 
     return <WrappedComponent {...props} />;
   };
