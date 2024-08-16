@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
     background-color: #0D0920;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

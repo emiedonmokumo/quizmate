@@ -1,13 +1,14 @@
-'use client'
 import { useDropzone } from 'react-dropzone';
 import { RxCrossCircled } from "react-icons/rx";
+import { encodeImageToBase64 } from '@/utils/encodeImageToBase64';
 
 const Dropzone = ({ image, setImage, setTypedText }) => {
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
-        onDrop: (acceptedFiles) => {
+        onDrop: async (acceptedFiles) => {
             const file = acceptedFiles[0];
-            setImage(file);
+            const base64String = await encodeImageToBase64(file);
+            setImage(base64String); // Set the base64 string as the image
         }
     });
 
@@ -17,7 +18,7 @@ const Dropzone = ({ image, setImage, setTypedText }) => {
                 <input {...getInputProps()} />
                 {image ? (
                     <div className='relative w-full h-full flex flex-col justify-center items-center'>
-                        <img src={URL.createObjectURL(image)} alt="Uploaded preview" className='absolute inset-0 w-full h-full object-contain' />
+                        <img src={image} alt="Uploaded preview" className='absolute inset-0 w-full h-full object-contain' />
                         <button className='absolute right-0 top-0 p-2' onClick={(e) => {e.stopPropagation(); setImage(null); setTypedText('')}}><RxCrossCircled className='text-4xl sm:text-2xl text-blue-400' /></button>
                     </div>
                 ) : (
