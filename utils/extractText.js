@@ -2,10 +2,6 @@ import { createWorker } from 'tesseract.js';
 
 async function extractText(image) {
   const worker = await createWorker('eng');
-  await worker.setParameters({
-    tessedit_char_whitelist: '0123456789+-=÷/ ',
-    tessedit_pageseg_mode: 12,
-  });
 
   const text = (await worker.recognize(image)).data.text;
 

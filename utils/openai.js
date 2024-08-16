@@ -9,7 +9,7 @@ export async function openai(question) {
             },
             body: JSON.stringify({
                 model: 'gpt-4',
-                messages: [{ role: 'user', content: `First, understand the question, check the meaning of the text if there is any. Don't ignore text that relates to the maths, check if the question is a math question,respond with the answer(s) to the question. If it's not a valid math question, respond with "This is not a valid math question." Here's the input:\n${question}` }],
+                messages: [{ role: 'user', content: `Answer the question and give only the answer Here's the input:\n${question}` }],
                 temperature: 0.7,
             })
         });
