@@ -10,7 +10,7 @@ export async function processText(question) {
         // Call the OpenAI API using the library
         const response = await openai.chat.completions.create({
             model: 'gpt-4',
-            messages: [{ role: 'user', content: `Answer the question and give only the answer. Here's the input:\n${question}` }],
+            messages: [{ role: 'user', content: `Answer the question and give only the answer. ${question}` }],
             temperature: 0.7,
         });
 
@@ -34,7 +34,7 @@ export async function processImage(image) {
           {
             role: "user",
             content: [
-              { type: "text", text: "Give answer(s) to the maths questions in this image, in html" },
+              { type: "text", text: "Give only answer(s) to the maths questions in this image, in html" },
               {
                 type: "image_url",
                 image_url: {
