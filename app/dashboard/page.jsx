@@ -4,8 +4,6 @@ import Dropzone from "@/components/Dropzone";
 import { useEffect, useState } from "react";
 import TextField from "@/components/TextField";
 import Loader from "@/components/Loader";
-import extractText from "@/utils/extractText";
-import Textzone from "@/components/Textzone";
 import { processText, processImage } from "@/utils/openai";
 import AnswerCard from "@/components/AnswerCard";
 import Button from "@/components/Button";
@@ -42,22 +40,6 @@ export default function Home() {
       setIsLoading(false)
     }
   };
-
-
-  // useEffect(() => {
-  //   const getText = async () => {
-  //     if (image) {
-  //       setIsLoading(true); // Start loading state for text extraction
-  //       try {
-  //         const text = await (image);
-  //         setTypedText(text);
-  //       } finally {
-  //         setIsLoading(false); // End loading state for text extraction
-  //       }
-  //     }
-  //   }
-  //   getText()
-  // }, [image])
 
 
   if (isLoading) return <Loader />;

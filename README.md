@@ -1,6 +1,6 @@
 # QuizMate
 
-**App Name:** QuizMate  
+**App Name:** QuizMate - API_KEY_REQUIRED
 **Domain:** [https://quiz-mate.vercel.app](https://quiz-mate.vercel.app)  
 **Description:** QuizMate is an AI-powered app that allows users to solve math problems by either typing them in or uploading images of the problems. The app uses OpenAI’s API to process and answer math questions.
 
@@ -21,7 +21,7 @@
 
 **Key Functionality:**
 - **State Management:** Manages states for category, typed text, image, loading status, and AI response.
-- **Image Handling:** Extracts text from uploaded images using `extractText`.
+- **Image Handling:** Processes image content and returns answers to math question.
 - **Text Handling:** Processes typed questions and gets answers from OpenAI’s API.
 - **Loading State:** Shows a loading indicator while processing requests.
 
