@@ -1,7 +1,11 @@
 # QuizMate
 
+
 **App Name:** QuizMate - API_KEY_REQUIRED
+
+
 **Domain:** [https://quiz-mate.vercel.app](https://quiz-mate.vercel.app)  
+
 **Description:** QuizMate is an AI-powered app that allows users to solve math problems by either typing them in or uploading images of the problems. The app uses OpenAI’s API to process and answer math questions.
 
 ## Project Structure
@@ -72,7 +76,6 @@
 - **`react-dom`**: React library for DOM rendering.
 - **`react-dropzone`**: For drag-and-drop file uploads.
 - **`react-icons`**: For using React icons.
-- **`tesseract.js`**: For OCR (optical character recognition).
 
 ### Dev Dependencies
 
