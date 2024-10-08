@@ -9,15 +9,9 @@ export async function processText(question) {
     try {
         // Call the OpenAI API using the library
         const response = await openai.chat.completions.create({
-<<<<<<< HEAD
             model: 'gpt-4o-mini',
             messages: [{ role: 'user', content: `Answer the math question in and give only the answer. Here's the input:\n${question}` }],
-=======
-            model: 'gpt-4',
-            messages: [{ role: 'user', content: `Answer the question and give only the answer. Here's the input:\n${question}` }],
-            temperature: 0.7,
-        });
-
+        })
         // Extract the relevant content from the response
         const content = response.choices[0]?.message.content.trim();
 
@@ -59,5 +53,3 @@ export async function processImage(image) {
       throw error; // Rethrow the error to be handled by the calling function
     }
 }
-
-  
