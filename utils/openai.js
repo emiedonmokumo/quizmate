@@ -14,8 +14,7 @@ export async function processText(question) {
             messages: [{ role: 'user', content: `Answer the math question in and give only the answer. Here's the input:\n${question}` }],
 =======
             model: 'gpt-4',
-            messages: [{ role: 'user', content: `Answer the question and give only the answer. ${question}` }],
->>>>>>> 52641280fb277247a029c9b043a1aa26fdfc753d
+            messages: [{ role: 'user', content: `Answer the question and give only the answer. Here's the input:\n${question}` }],
             temperature: 0.7,
         });
 
