@@ -12,7 +12,7 @@ import MathRenderer from "@/components/MathRenderer";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('Misc');
-  const [typedText, setTypedText] = useState(null);
+  const [typedText, setTypedText] = useState('');
   const [image, setImage] = useState(null);
   const [imageResponse, setImageResponse] = useState('')
   const [isLoading, setIsLoading] = useState(false);

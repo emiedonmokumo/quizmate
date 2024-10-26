@@ -6,11 +6,11 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
-    screens: {
-      sm: { 'max': '480px' },
-      md: { 'min': '481px', 'max': '768px' },
-      lg: { 'min': '769px' }
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+      },
     },
   },
   plugins: [],
